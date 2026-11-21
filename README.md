@@ -17,14 +17,14 @@
 
 ```mermaid
 flowchart LR
-    S1["🔥 Sub 1: Done (4/4)\nStacks & Queues"] --> S2["🌊 Sub 2: Next (0/4)\nCircular & Linked Lists"]
+    S1["🔥 Sub 1: Done (4/4)\nStacks & Queues"] --> S2["🌊 Sub 2: Live (3/4)\nCircular & Linked Lists"]
     S2 --> S3["🔮 Sub 3: Planned (0/4)\nPointer Stacks & Fibonacci"]
     S3 --> S4["🧡 Sub 4: Planned (0/4)\nHanoi & Elementary Sorts"]
     S4 --> S5["⚡ Sub 5: Planned (0/4)\nMerge & Quick Sorts"]
     S5 --> S6["🌳 Sub 6: Planned (0/3)\nBST & Self-Balancing AVL"]
 
     style S1 fill:#00b894,stroke:#00cec9,stroke-width:3px,color:#ffffff
-    style S2 fill:#0984e3,stroke:#74b9ff,stroke-width:2px,color:#ffffff
+    style S2 fill:#0984e3,stroke:#74b9ff,stroke-width:3px,color:#ffffff
     style S3 fill:#6c5ce7,stroke:#a29bfe,stroke-width:2px,color:#ffffff
     style S4 fill:#e17055,stroke:#fab1a0,stroke-width:2px,color:#ffffff
     style S5 fill:#fdcb6e,stroke:#ffeaa7,stroke-width:2px,color:#2d3436
@@ -42,8 +42,9 @@ Hi, I'm **Bihandu Vindiv Hettiarachchi** (`UGC0625020`)! Welcome to [bihanduvind
 Instead of plain text notes, this guide visualizes how each data structure and algorithm works in memory:
 - 🎨 **Operation Trade-offs**: Choosing whether to optimize for fast writes (`Push-Friendly` / `Enqueue-Friendly`) or fast reads (`Pop-Friendly` / `Dequeue-Friendly`).
 - 🌊 **Dynamic Memory Scaling (`UnboundedArrayStack`)**: Watching arrays expand (`×2`) and shrink (`÷2`) automatically so memory is never wasted.
+- 🔗 **Ring Buffers & Pointer Chains (`ArrayCircularQueue`, `SinglyLinkedList`, `DoublyLinkedList`)**: Reusing fixed array slots with modulo wrap-around and linking dynamic nodes in one or both directions.
 
-### 🖼️ Visual Diagrams: Submission 1
+### 🖼️ Visual Diagrams: Submissions 1 & 2
 
 #### 🎭 1. `QueueStack` — Push-Friendly vs. Pop-Friendly
 
@@ -89,18 +90,34 @@ flowchart LR
     style Out fill:#fab1a0,stroke:#e17055,color:#2d3436
 ```
 
+#### 🔗 4. Submission 2 — `ArrayCircularQueue`, `SinglyLinkedList` & `DoublyLinkedList`
+
+```mermaid
+flowchart LR
+    subgraph SLL["🌊 Singly Linked List (One-Way)"]
+        S10["10"] --> S20["20"] --> S30["30"] --> SN["null"]
+    end
+
+    subgraph DLL["🔮 Doubly Linked List (Two-Way)"]
+        D5["5"] <--> D10["10"] <--> D20["20"] <--> D30["30"]
+    end
+
+    style SLL fill:#e3f2fd,stroke:#0984e3,stroke-width:2px,color:#2d3436
+    style DLL fill:#f3e5f5,stroke:#6c5ce7,stroke-width:2px,color:#2d3436
+```
+
 ### 🗂️ CA3 Submission Roadmap & Complexity Guide
 
 | Milestone | Topic / Data Structure & Algorithm | Java File in Repository | Time Complexity & Key Focus | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **🔥 Sub 1** | **QueueStack — Push Friendly** | [QueueStack\_PushFriendly.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/QueueStack_PushFriendly.java) | `🟢 Push: O(1)` · `🟠 Pop: O(n)` — Fast writes; shifts elements between queues only when popping. | ✅ Live |
-| **🔥 Sub 1** | **QueueStack — Pop Friendly** | [QueueStack\_PopFriendly.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/QueueStack_PopFriendly.java) | `🟠 Push: O(n)` · `🟢 Pop: O(1)` — Reorders elements on push so every pop is instant. | ✅ Live |
-| **🔥 Sub 1** | **Unbounded Array Stack** | [UnboundedArrayStack.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/UnboundedArrayStack.java) | `🟢 Amortized O(1)` — Dynamic array that doubles on overflow and halves when sparse. | ✅ Live |
-| **🔥 Sub 1** | **StackQueue — Enqueue Friendly** | [StackQueue\_EnqueueFriendly.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/StackQueue_EnqueueFriendly.java) | `🟢 Enqueue: O(1)` · `🟠 Dequeue: O(n)` — Two LIFO stacks working together as a FIFO queue. | ✅ Live |
+| **🔥 Sub 1** | **QueueStack — Push Friendly** | [QueueStack\_PushFriendly.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FQueueStack_PushFriendly.java) | `🟢 Push: O(1)` · `🟠 Pop: O(n)` — Fast writes; shifts elements between queues only when popping. | ✅ Live |
+| **🔥 Sub 1** | **QueueStack — Pop Friendly** | [QueueStack\_PopFriendly.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FQueueStack_PopFriendly.java) | `🟠 Push: O(n)` · `🟢 Pop: O(1)` — Reorders elements on push so every pop is instant. | ✅ Live |
+| **🔥 Sub 1** | **Unbounded Array Stack** | [UnboundedArrayStack.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FUnboundedArrayStack.java) | `🟢 Amortized O(1)` — Dynamic array that doubles on overflow and halves when sparse. | ✅ Live |
+| **🔥 Sub 1** | **StackQueue — Enqueue Friendly** | [StackQueue\_EnqueueFriendly.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FStackQueue_EnqueueFriendly.java) | `🟢 Enqueue: O(1)` · `🟠 Dequeue: O(n)` — Two LIFO stacks working together as a FIFO queue. | ✅ Live |
 | **🌊 Sub 2** | **StackQueue — Dequeue Friendly** | `StackQueue_DequeueFriendly.java` | `🟠 Enqueue: O(n)` · `🟢 Dequeue: O(1)` — Pre-flips stacks on insert for instant retrieval. | ⏳ Next |
-| **🌊 Sub 2** | **Array Circular Queue** | `ArrayCircularQueue.java` | `🟢 Enqueue/Dequeue: O(1)` — Modulo ring buffer (`(rear + 1) % cap`) with zero wasted space. | ⏳ Next |
-| **🌊 Sub 2** | **Singly Linked List** | `SinglyLinkedList.java` | `🟢 Head: O(1)` · `🟠 Traversal: O(n)` — Dynamic chain of nodes linked by forward pointers. | ⏳ Next |
-| **🌊 Sub 2** | **Doubly Linked List** | `DoublyLinkedList.java` | `🟢 Ends: O(1)` — Two-way node list (`prev` ⇄ `next`) for forward and backward traversal. | ⏳ Next |
+| **🌊 Sub 2** | **Array Circular Queue** | [ArrayCircularQueue.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FArrayCircularQueue.java) | `🟢 Enqueue/Dequeue: O(1)` — Modulo ring buffer (`(rear + 1) % cap`) with zero wasted space. | ✅ Live |
+| **🌊 Sub 2** | **Singly Linked List** | [SinglyLinkedList.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FSinglyLinkedList.java) | `🟢 Head: O(1)` · `🟠 Insert End / Display: O(n)` — Dynamic chain of nodes linked by forward pointers. | ✅ Live |
+| **🌊 Sub 2** | **Doubly Linked List** | [DoublyLinkedList.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FDoublyLinkedList.java) | `🟢 Head/Tail Insert: O(1)` — Two-way node list (`prev` ⇄ `next`) supporting forward and backward display. | ✅ Live |
 | **🔮 Sub 3** | **Circular Doubly Linked List** | `CircularDoublyLinkedList.java` | `🟢 Ends: O(1)` — Continuous bidirectional loop connecting the tail back to the head. | ⏳ Planned |
 | **🔮 Sub 3** | **Linked List Stack** | `LinkedListStack.java` | `🟢 Push/Pop: O(1)` — Pointer-based LIFO stack with no array resizing overhead. | ⏳ Planned |
 | **🔮 Sub 3** | **Linked List FIFO Queue** | `LinkedListFIFOQueue.java` | `🟢 Enqueue/Dequeue: O(1)` — Pointer-based queue anchored at `front` and `rear`. | ⏳ Planned |
@@ -124,11 +141,11 @@ flowchart LR
 git clone https://github.com/bihanduvindiv/DSA.git
 cd DSA
 
-# 2. Compile any Java file
-javac UnboundedArrayStack.java
+# 2. Compile any Java file (e.g., DoublyLinkedList.java)
+javac DoublyLinkedList.java
 
 # 3. Run the program
-java UnboundedArrayStack
+java DoublyLinkedList
 ```
 
 ---
@@ -140,35 +157,35 @@ java UnboundedArrayStack
 はじめまして、**Bihandu Vindiv Hettiarachchi（ビハンドゥ・ヴィンディヴ・ヘッティアラッチ / 学籍番号: `UGC0625020`）**です！
 このリポジトリ（[bihanduvindiv/DSA](https://github.com/bihanduvindiv/DSA)）は、**Lanka Nippon BizTech Institute (LNBTI)** の講義 `CMP210130_SE06/07` における **CA3 GitHub提出課題** のJava実装を、カラフルな図解とともに分かりやすくまとめたものです。
 
-### 🖼️ カラフル図解：第1回課題（Submission 1）の仕組み
+### 🖼️ カラフル図解：第1回・第2回課題の仕組み
 
 ```mermaid
 flowchart LR
-    subgraph Sub1_JP["🌸 第1回課題（Submission 1）の4大アーキテクチャ"]
-        A["🟢 QueueStack (Push優先)\n追加は O(1) で一瞬！\n取り出し時に O(n) 移動"]
-        B["🟣 QueueStack (Pop優先)\n追加時に O(n) で整列！\n取り出しは O(1) で一瞬"]
-        C["🌊 UnboundedArrayStack\n満杯で ×2 拡張・空きで ÷2 縮小\n自動伸縮する動的配列"]
-        D["🔥 StackQueue (Enqueue優先)\n2つのスタックを反転させ\nFIFOキューを実現"]
+    subgraph Sub12_JP["🌸 実装済みコア構造（第1回・第2回）"]
+        A["🟢 QueueStack / StackQueue\n操作の優先度（O(1) vs O(n)）を\n2つの構造で使い分け"]
+        B["🌊 UnboundedArrayStack\n満杯で ×2 拡張・空きで ÷2 縮小\n自動伸縮する動的配列"]
+        C["🔄 ArrayCircularQueue\n剰余演算（%）で先頭と末尾を繋ぐ\nO(1) リングバッファ"]
+        D["🔗 Singly / Doubly LinkedList\n単方向・双方向ポインタによる\n柔軟なノード連結リスト"]
     end
 
     style A fill:#55efc4,stroke:#00b894,color:#2d3436
-    style B fill:#a29bfe,stroke:#6c5ce7,color:#ffffff
-    style C fill:#74b9ff,stroke:#0984e3,color:#2d3436
-    style D fill:#fab1a0,stroke:#e17055,color:#2d3436
+    style B fill:#74b9ff,stroke:#0984e3,color:#2d3436
+    style C fill:#ffeaa7,stroke:#fdcb6e,color:#2d3436
+    style D fill:#a29bfe,stroke:#6c5ce7,color:#ffffff
 ```
 
 ### 🗂️ CA3 全6回 課題一覧＆計算量ガイド
 
 | 提出回 | アルゴリズム・データ構造 | ソースコード | 計算量と実装のポイント | ステータス |
 | :--- | :--- | :--- | :--- | :--- |
-| **🔥 第1回** | **QueueStack（Push優先型）** | [QueueStack\_PushFriendly.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/QueueStack_PushFriendly.java) | `🟢 Push: O(1)` · `🟠 Pop: O(n)` — 2つのキューでLIFOを構築し、書き込み速度を最大化。 | ✅ 完了 |
-| **🔥 第1回** | **QueueStack（Pop優先型）** | [QueueStack\_PopFriendly.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/QueueStack_PopFriendly.java) | `🟠 Push: O(n)` · `🟢 Pop: O(1)` — 追加時に順序を整え、読み出しを即座に実行。 | ✅ 完了 |
-| **🔥 第1回** | **可変長配列スタック (Unbounded Array Stack)** | [UnboundedArrayStack.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/UnboundedArrayStack.java) | `🟢 ならし O(1)` — データの増減に合わせて配列サイズを動的に拡大・縮小。 | ✅ 完了 |
-| **🔥 第1回** | **StackQueue（Enqueue優先型）** | [StackQueue\_EnqueueFriendly.java](https://www.google.com/search?q=https://github.com/bihanduvindiv/DSA/blob/main/StackQueue_EnqueueFriendly.java) | `🟢 Enqueue: O(1)` · `🟠 Dequeue: O(n)` — 2つのスタックを組み合わせてFIFOキューを実現。 | ✅ 完了 |
+| **🔥 第1回** | **QueueStack（Push優先型）** | [QueueStack\_PushFriendly.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FQueueStack_PushFriendly.java) | `🟢 Push: O(1)` · `🟠 Pop: O(n)` — 2つのキューでLIFOを構築し、書き込み速度を最大化。 | ✅ 完了 |
+| **🔥 第1回** | **QueueStack（Pop優先型）** | [QueueStack\_PopFriendly.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FQueueStack_PopFriendly.java) | `🟠 Push: O(n)` · `🟢 Pop: O(1)` — 追加時に順序を整え、読み出しを即座に実行。 | ✅ 完了 |
+| **🔥 第1回** | **可変長配列スタック (Unbounded Array Stack)** | [UnboundedArrayStack.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FUnboundedArrayStack.java) | `🟢 ならし O(1)` — データの増減に合わせて配列サイズを動的に拡大・縮小。 | ✅ 完了 |
+| **🔥 第1回** | **StackQueue（Enqueue優先型）** | [StackQueue\_EnqueueFriendly.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FStackQueue_EnqueueFriendly.java) | `🟢 Enqueue: O(1)` · `🟠 Dequeue: O(n)` — 2つのスタックを組み合わせてFIFOキューを実現。 | ✅ 完了 |
 | **🌊 第2回** | **StackQueue（Dequeue優先型）** | `StackQueue_DequeueFriendly.java` | `🟠 Enqueue: O(n)` · `🟢 Dequeue: O(1)` — 取り出しを最速化した2スタック構成。 | ⏳ 次回 |
-| **🌊 第2回** | **循環配列キュー (ArrayCircularQueue)** | `ArrayCircularQueue.java` | `🟢 追加/削除: O(1)` — 剰余演算（`%`）で配列の先頭と末尾を繋ぐリングバッファ。 | ⏳ 次回 |
-| **🌊 第2回** | **単方向連結リスト (SinglyLinkedList)** | `SinglyLinkedList.java` | `🟢 先頭: O(1)` · `🟠 探索: O(n)` — ポインタで一方向に繋がる基本的な連結リスト。 | ⏳ 次回 |
-| **🌊 第2回** | **双方向連結リスト (DoublyLinkedList)** | `DoublyLinkedList.java` | `🟢 両端: O(1)` — 前後ポインタ（`prev` ⇄ `next`）による双方向リスト。 | ⏳ 次回 |
+| **🌊 第2回** | **循環配列キュー (ArrayCircularQueue)** | [ArrayCircularQueue.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FArrayCircularQueue.java) | `🟢 追加/削除: O(1)` — 剰余演算（`%`）で配列の先頭と末尾を繋ぐリングバッファ。 | ✅ 完了 |
+| **🌊 第2回** | **単方向連結リスト (SinglyLinkedList)** | [SinglyLinkedList.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FSinglyLinkedList.java) | `🟢 先頭: O(1)` · `🟠 末尾挿入/表示: O(n)` — ポインタで一方向に繋がる基本的な連結リスト。 | ✅ 完了 |
+| **🌊 第2回** | **双方向連結リスト (DoublyLinkedList)** | [DoublyLinkedList.java](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fbihanduvindiv%2FDSA%2Fblob%2Fmain%2FDoublyLinkedList.java) | `🟢 先頭/末尾挿入: O(1)` — 前後ポインタ（`prev` ⇄ `next`）による順方向・逆方向表示対応リスト。 | ✅ 完了 |
 | **🔮 第3回** | **循環双方向連結リスト (CircularDoublyLinkedList)** | `CircularDoublyLinkedList.java` | `🟢 両端: O(1)` — 先頭と末尾を双方向に連結した循環リスト。 | ⏳ 予定 |
 | **🔮 第3回** | **連結リストスタック (LinkedListStack)** | `LinkedListStack.java` | `🟢 Push/Pop: O(1)` — サイズ制限のないポインタ型LIFOスタック。 | ⏳ 予定 |
 | **🔮 第3回** | **連結リストFIFOキュー (LinkedListFIFOQueue)** | `LinkedListFIFOQueue.java` | `🟢 Enqueue/Dequeue: O(1)` — `front` と `rear` ポインタを用いた高速キュー。 | ⏳ 予定 |
